@@ -24,8 +24,8 @@
       "error",
       {
         "singleQuote": true,
-        "jsxSingleQuote": true,
-        "parser": "flow"
+        "jsxSingleQuote": true
+        // "parser": "flow"
       }
     ]
   }

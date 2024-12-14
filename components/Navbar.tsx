@@ -18,7 +18,7 @@ import { joinClassNames } from '@/helpers';
 type LinkProps = { href: string };
 type NavLinkProps = { isLoggedIn: boolean };
 
-const Navbar = () => {
+export const Navbar = () => {
   const [isLoggedIn] = useState(false);
   return (
     <Disclosure as='nav' className='bg-slate-800'>
@@ -140,5 +140,3 @@ const MenuLink = ({ children, href }: PropsWithChildren<LinkProps>) => (
     {children}
   </Link>
 );
-
-export default Navbar;
