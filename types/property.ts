@@ -26,7 +26,7 @@ type Location = {
 
 type Rates = {
   weekly: number;
-  monthly: number;
+  monthly?: number;
 };
 
 type SellerInfo = {
