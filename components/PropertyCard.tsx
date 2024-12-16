@@ -1,6 +1,7 @@
 import { numberWithCommas } from '@/helpers';
 import { Property } from '@/types';
 import Image from 'next/image';
+import Link from 'next/link';
 import { FaBath, FaBed } from 'react-icons/fa';
 import { FaLocationDot } from 'react-icons/fa6';
 
@@ -10,7 +11,10 @@ type Props = {
 
 export const PropertyCard = ({ property }: Props) => {
   return (
-    <div className='relative cursor-pointer rounded bg-slate-300 hover:bg-slate-200'>
+    <Link
+      href={`/properties/${property._id}`}
+      className='relative cursor-pointer rounded bg-slate-300 hover:bg-slate-200'
+    >
       <div className='relative h-72'>
         <Image
           fill
@@ -49,6 +53,6 @@ export const PropertyCard = ({ property }: Props) => {
         <FaLocationDot size={20} />
         <span className='font-bold'>{`${property.location.city}, ${property.location.state}`}</span>
       </div>
-    </div>
+    </Link>
   );
 };
