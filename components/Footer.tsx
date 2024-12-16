@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export const Footer = () => (
-  <footer className='bg-slate-800'>
+  <footer className='hidden bg-slate-800 md:block'>
     <div className='mx-auto w-full max-w-screen-xl p-4 md:flex md:items-center md:justify-between'>
       <span className='text-sm text-gray-500 sm:text-center dark:text-gray-400'>
         © 2025
