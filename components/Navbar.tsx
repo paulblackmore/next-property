@@ -97,7 +97,7 @@ export const Navbar = () => {
       </div>
       {/* Mobile links */}
       <DisclosurePanel className='sm:hidden'>
-        <div className='text-x absolute flex h-[calc(100vh-4rem)] w-full flex-col items-center gap-10 bg-slate-800 px-2 pt-10 text-white'>
+        <div className='no-doc-scroll absolute z-30 flex h-[calc(100vh-4rem)] w-full flex-col items-center gap-10 bg-slate-800 px-2 pt-10 text-white'>
           <NavLinks isLoggedIn={isLoggedIn} />
         </div>
       </DisclosurePanel>
