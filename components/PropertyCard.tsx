@@ -26,7 +26,7 @@ export const PropertyCard = ({ property }: Props) => {
           </div>
         )}
       </div>
-      <div className='relative flex h-36 flex-col justify-center gap-1 p-4'>
+      <div className='relative flex h-48 flex-col justify-start gap-1 p-4'>
         <span>{property.type}</span>
         <h2 className='text-xl font-bold'>{property.name}</h2>
         <p>{property.description}</p>
