@@ -3,7 +3,7 @@ import { InfoDetails } from './InfoDetails';
 
 export const InfoLayout = () => {
   return (
-    <section className='mx-auto grid max-w-7xl grid-cols-2 gap-12 p-16'>
+    <section className='mx-auto grid max-w-7xl grid-cols-1 gap-12 p-16 md:grid-cols-2'>
       <InfoDetails
         heading='For Renters'
         btnText='Browse Properties'
