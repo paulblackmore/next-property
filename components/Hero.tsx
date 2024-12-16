@@ -8,17 +8,17 @@ export const Hero = () => {
     <section className='flex h-96 w-full flex-col items-center justify-center bg-slate-700 p-12 text-white'>
       <h1 className='text-4xl font-semibold'>Find The Perfect Rental</h1>
       <h3>Discover the perfect property tht suits your needs.</h3>
-      <form className='flex w-full items-center justify-center gap-4 p-8 text-black'>
+      <form className='grid w-full grid-cols-1 gap-4 p-8 md:w-1/2 lg:grid-cols-3'>
         <Input
           type='text'
           name='search-location'
-          className='w-40 rounded px-4 py-2 text-sm'
+          className='rounded px-4 py-2 text-sm text-black'
           placeholder='Enter location'
         />
         <Select
           name='status'
           aria-label='Property type'
-          className='w-40 rounded px-4 py-2 text-sm'
+          className='rounded px-4 py-2 text-sm text-black'
         >
           {/* TODO confirm property types and fix icons position */}
           <option value='active'>Active</option>
