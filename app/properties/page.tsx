@@ -1,7 +1,12 @@
 import React from 'react';
-import properties from '../../dummy_data/properties.json';
 import { Properties } from '@/components/Properties';
+import { connectDB } from '@/config/database';
+import Property from '@/models/Property';
 
-const PropertiesPage = () => <Properties properties={properties} />;
+const PropertiesPage = async () => {
+  await connectDB();
+  const properties = await Property.find({});
+  return <Properties properties={properties} />;
+};
 
 export default PropertiesPage;
