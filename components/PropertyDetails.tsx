@@ -11,7 +11,6 @@ type Props = {
 };
 
 export const PropertyDetails = ({ property }: Props) => {
-  console.log(Object.entries(property.rates));
   return (
     <div className='col-span-2 grid gap-8 p-4'>
       <div className='flex items-end justify-between gap-1'>
