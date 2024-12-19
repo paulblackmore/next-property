@@ -1,5 +1,5 @@
 'use client';
-import { PropsWithChildren, useState } from 'react';
+import { PropsWithChildren, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -14,12 +14,24 @@ import {
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { usePathname } from 'next/navigation';
 import { joinClassNames } from '@/helpers';
+import { signIn, useSession, getProviders } from 'next-auth/react';
+import { Session } from 'next-auth';
 
 type LinkProps = { href: string };
-type NavLinkProps = { isLoggedIn: boolean };
+type NavLinkProps = { isLoggedIn: Session | null };
 
 export const Navbar = () => {
-  const [isLoggedIn] = useState(false);
+  const { data: session } = useSession();
+  const [providers, setProviders] = useState(null);
+
+  useEffect(() => {
+    const setAuthProvider = async () => {
+      const res = await getProviders();
+      setProviders(res as any);
+    };
+    setAuthProvider();
+  }, []);
+
   return (
     <Disclosure as='nav' className='bg-slate-800'>
       <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>
@@ -42,18 +54,23 @@ export const Navbar = () => {
           <div className='flex flex-1 items-center justify-center sm:items-stretch sm:justify-start'>
             <div className='hidden sm:ml-6 sm:block'>
               <div className='flex space-x-4 text-white'>
-                <NavLinks isLoggedIn={isLoggedIn} />
+                <NavLinks isLoggedIn={session} />
               </div>
             </div>
           </div>
           <div className='tems-center flex justify-end'>
-            {!isLoggedIn ? (
-              <button
-                type='button'
-                className='rounded border border-slate-200 bg-transparent px-4 py-2 text-xs font-semibold text-slate-200 hover:border-slate-300 hover:text-slate-300'
-              >
-                Login
-              </button>
+            {!session ? (
+              providers &&
+              Object.values(providers).map((provider: any) => (
+                <button
+                  type='button'
+                  key={provider.id}
+                  className='rounded border border-slate-200 bg-transparent px-4 py-2 text-xs font-semibold text-slate-200 hover:border-slate-300 hover:text-slate-300'
+                  onClick={() => signIn(provider.id)}
+                >
+                  Login
+                </button>
+              ))
             ) : (
               <>
                 <button
@@ -98,7 +115,7 @@ export const Navbar = () => {
       {/* Mobile links */}
       <DisclosurePanel className='sm:hidden'>
         <div className='no-doc-scroll absolute z-30 flex h-[calc(100vh-4rem)] w-full flex-col items-center gap-10 bg-slate-800 px-2 pt-10 text-white'>
-          <NavLinks isLoggedIn={isLoggedIn} />
+          <NavLinks isLoggedIn={session} />
         </div>
       </DisclosurePanel>
     </Disclosure>
