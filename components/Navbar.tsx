@@ -3,6 +3,7 @@ import { PropsWithChildren, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
+  Button,
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
@@ -14,7 +15,7 @@ import {
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { usePathname } from 'next/navigation';
 import { joinClassNames } from '@/helpers';
-import { signIn, useSession, getProviders } from 'next-auth/react';
+import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
 import { Session } from 'next-auth';
 
 type LinkProps = { href: string };
@@ -87,7 +88,7 @@ export const Navbar = () => {
                         alt='profile-image'
                         width={0}
                         height={0}
-                        src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
+                        src={session.user?.image || ''}
                         className='size-8 rounded-full'
                       />
                     </MenuButton>
@@ -103,7 +104,12 @@ export const Navbar = () => {
                       <MenuLink href='#'>Settings</MenuLink>
                     </MenuItem>
                     <MenuItem>
-                      <MenuLink href='#'>Sign out</MenuLink>
+                      <Button
+                        className='block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none'
+                        onClick={() => signOut()}
+                      >
+                        Sign out
+                      </Button>
                     </MenuItem>
                   </MenuItems>
                 </Menu>
