@@ -147,7 +147,10 @@ const NavLinks = ({ isLoggedIn }: NavLinkProps) => {
         Properties
       </Link>
       {isLoggedIn && (
-        <Link href='/add-property' className={isLinkActive('/add-property')}>
+        <Link
+          href='/properties/add'
+          className={isLinkActive('/properties/add')}
+        >
           Add Property
         </Link>
       )}
