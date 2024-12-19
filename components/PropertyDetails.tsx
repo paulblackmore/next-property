@@ -53,7 +53,7 @@ export const PropertyDetails = ({ property }: Props) => {
         )}
       </div>
       <h3 className='text-lg font-semibold'>Amenities</h3>
-      <div>
+      <div className='grid grid-cols-1 md:grid-cols-3'>
         {property.amenities.map((amenity: string) => (
           <div key={amenity} className='flex items-center gap-2'>
             <HiCheck color='green' />
